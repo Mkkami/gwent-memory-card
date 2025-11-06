@@ -55,7 +55,7 @@ function Game({cardData, gameEnd}) {
                     <Card key={c.name} name={c.name} src={c.src} handleClick={ () => clickAction(c.name) }/>
                 )}
             </div>
-            <p>{gameCounter}/{NUM_OF_CARDS}</p>
+            <p className='current-score'>{gameCounter}/{NUM_OF_CARDS}</p>
         </div>
     )
 }

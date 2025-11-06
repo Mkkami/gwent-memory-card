@@ -38,15 +38,20 @@ function App() {
 
   return (
     <>
-    <button className='home'>Home</button>
-    <MusicPlayer />
-      {gameState == states.menu && 
-        <Menu handleStart={() => setGameState(states.game)}/>}
-      {gameState == states.game && cardData && 
-        <Game cardData={cardData} gameEnd={handleGameEnd}/> }
-      {gameState == states.result && 
-        <Result state={gameResult} menu={() => handleBackToMenu()}/>}
-      {gameState == states.game && !cardData && <p>Loading...</p>}
+    <header>
+      <button className='home'>Home</button>
+      <MusicPlayer />
+      </header>
+    
+      <main>
+        {gameState == states.menu &&
+          <Menu handleStart={() => setGameState(states.game)}/>}
+        {gameState == states.game && cardData &&
+          <Game cardData={cardData} gameEnd={handleGameEnd}/> }
+        {gameState == states.result &&
+          <Result state={gameResult} menu={() => handleBackToMenu()}/>}
+        {gameState == states.game && !cardData && <p>Loading...</p>}
+      </main>
     </>
   )
 }

@@ -1,18 +1,24 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
 }
 
 .home {
-  position: absolute;
-  top: 0;
-  left: 0;
+  margin: 1em;
 }
 
-.music {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+main {
+  flex: 1 1 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
 }
