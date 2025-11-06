@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react'
 import './styles/App.css'
 import Game from './Game.jsx'
 import Menu from './Menu.jsx'
+import Result from './Result.jsx'
 import './styles/font.css'
 import fetchCardData from './fetchCardData'
 
 const states = {
   menu: 'menu',
-  game: 'game'
+  game: 'game',
+  result: 'result'
 };
 
 function App() {
   const [gameState, setGameState] = useState(states.menu);
+  const [gameResult, setGameResult] = useState(null);
   const [music, setMusic] = useState(false);
   const [cardData, setCardData] = useState(null);
 
@@ -23,15 +26,27 @@ function App() {
     loadCardData();
   },[])
 
+  function handleGameEnd(result) {
+    setGameResult(result);
+    setGameState(states.result);
+  }
+
+  function handleBackToMenu() {
+    setGameResult(null);
+    setGameState(states.menu);
+  }
+
   return (
     <>
     <button className='home'>Home</button>
     <button className='music'>Music</button>
-      {gameState == states.menu ? 
-      <Menu handleStart={() => setGameState('game')}/>
-      :
-      cardData ? <Game cardData={cardData}/> : <p>Loading...</p>
-      }
+      {gameState == states.menu && 
+        <Menu handleStart={() => setGameState(states.game)}/>}
+      {gameState == states.game && cardData && 
+        <Game cardData={cardData} gameEnd={handleGameEnd}/> }
+      {gameState == states.result && 
+        <Result state={gameResult} menu={() => handleBackToMenu()}/>}
+      {gameState == states.game && !cardData && <p>Loading...</p>}
     </>
   )
 }

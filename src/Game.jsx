@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import fetchCardData from "./fetchCardData";
 import fetchImageData from "./fetchImageData";
 import Card from "./Card";
 import './styles/Game.css'
 
-function Game({cardData}) {
+function Game({cardData, gameEnd}) {
     const SIZE = 1381; //max id is 1380
     const NUM_OF_CARDS = 5;
 
     const [gameCards, setGameCards] = useState([]);
+    const [gameCounter, setGameCounter] = useState(0);
+    const [selectedCards, setSelectedCards] = useState([]);
 
     console.log(gameCards);
 
@@ -31,13 +32,30 @@ function Game({cardData}) {
         loadGameCards();
     }, [])
 
+    const clickAction = (key) => {
+        if (selectedCards.includes(key)) {
+            gameEnd('lose');
+            return;
+        }
+        setSelectedCards([...selectedCards, key])
+
+        if (gameCounter + 1 == NUM_OF_CARDS) {
+            gameEnd('win');
+            return;
+        }
+        setGameCards(shuffleArray(gameCards));
+        setGameCounter(gameCounter + 1);
+    }
     
 
     return (
         <div className="game">
-            {gameCards.map(c => 
-                <Card key={c.name} name={c.name} src={c.src} handleClick={ () => setGameCards(shuffleArray(gameCards))}/>
-            )}
+            <div className="card-container">
+                {gameCards.map(c =>
+                    <Card key={c.name} name={c.name} src={c.src} handleClick={ () => clickAction(c.name) }/>
+                )}
+            </div>
+            <p>{gameCounter}/{NUM_OF_CARDS}</p>
         </div>
     )
 }
