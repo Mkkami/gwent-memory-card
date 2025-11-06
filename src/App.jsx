@@ -6,6 +6,7 @@ import Result from './Result.jsx'
 import './styles/font.css'
 import fetchCardData from './fetchCardData'
 import MusicPlayer from './MusicPlayer.jsx'
+import AnimatedBackground from './AnimatedBackground.jsx'
 
 const states = {
   menu: 'menu',
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+    <AnimatedBackground/>
     <header>
       <button className='home' onClick={handleBackToMenu}>Home</button>
       <MusicPlayer />
