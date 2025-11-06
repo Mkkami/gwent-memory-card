@@ -16,7 +16,6 @@ const states = {
 function App() {
   const [gameState, setGameState] = useState(states.menu);
   const [gameResult, setGameResult] = useState(null);
-  const [music, setMusic] = useState(false);
   const [cardData, setCardData] = useState(null);
 
   useEffect(() => {
@@ -40,11 +39,7 @@ function App() {
   return (
     <>
     <button className='home'>Home</button>
-    <button className='music'
-     onClick={() => setMusic(m => !m)}>
-      {music ? "Pause" : "Play"}
-     </button>
-    <MusicPlayer playing={music}/>
+    <MusicPlayer />
       {gameState == states.menu && 
         <Menu handleStart={() => setGameState(states.game)}/>}
       {gameState == states.game && cardData && 
