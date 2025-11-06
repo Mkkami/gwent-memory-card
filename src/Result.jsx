@@ -1,4 +1,4 @@
-
+import './styles/Result.css'
 function Result({state, menu}) {
 
     return (

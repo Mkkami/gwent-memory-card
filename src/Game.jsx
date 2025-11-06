@@ -10,6 +10,7 @@ function Game({cardData, gameEnd}) {
     const [gameCards, setGameCards] = useState([]);
     const [gameCounter, setGameCounter] = useState(0);
     const [selectedCards, setSelectedCards] = useState([]);
+    const [flipped, setFlipped] = useState(false);
 
     console.log(gameCards);
 
@@ -30,9 +31,11 @@ function Game({cardData, gameEnd}) {
             setGameCards(cards);
         }
         loadGameCards();
+        setFlipped(true);
     }, [])
 
     const clickAction = (key) => {
+        
         if (selectedCards.includes(key)) {
             gameEnd('lose');
             return;
@@ -43,16 +46,20 @@ function Game({cardData, gameEnd}) {
             gameEnd('win');
             return;
         }
-        setGameCards(shuffleArray(gameCards));
-        setGameCounter(gameCounter + 1);
+        setFlipped(false);
+        setTimeout(() => {
+            setGameCards(shuffleArray(gameCards));
+            setGameCounter(gameCounter + 1);
+            setFlipped(true);
+        }, 1000);
+        
     }
     
-
     return (
         <div className="game">
             <div className="card-container">
                 {gameCards.map(c =>
-                    <Card key={c.name} name={c.name} src={c.src} handleClick={ () => clickAction(c.name) }/>
+                    <Card key={c.name} name={c.name} src={c.src} flipped={flipped} handleClick={ () => clickAction(c.name) }/>
                 )}
             </div>
             <p className='current-score'>{gameCounter}/{NUM_OF_CARDS}</p>
