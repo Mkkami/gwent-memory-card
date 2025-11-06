@@ -2,18 +2,18 @@
 async function fetchCardData() {
 
     const data = localStorage.getItem("gwent_cards");
-    let cards;
+    let cardData;
 
     if (!data) {
         const response = await fetch("https://api.gwent.one/?key=data&response=json")
         const json = await response.json()
-        cards = cleanData(json);
-        localStorage.setItem("gwent_cards", JSON.stringify(cards));
+        cardData = cleanData(json);
+        localStorage.setItem("gwent_cards", JSON.stringify(cardData));
     } else {
-        cards = JSON.parse(data);
+        cardData = JSON.parse(data);
     }
-    console.log(cards);
-    return cards;
+    console.log(cardData);
+    return cardData;
 }
 
 export default fetchCardData;
