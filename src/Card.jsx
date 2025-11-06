@@ -1,6 +1,6 @@
 import "./styles/Card.css"
 
-function Card({src, name, handleClick, flipped}) {
+function Card({src, name, handleClick, flipped, backSrc}) {
 
 
     return (
@@ -12,7 +12,7 @@ function Card({src, name, handleClick, flipped}) {
                         <p>{name}</p>
                     </div>
                     <div className="card-face card-back">
-                        <img src="/img/back.png" alt=""/>
+                        <img src={backSrc} alt=""/>
                     </div>
                 </div>
             </div>

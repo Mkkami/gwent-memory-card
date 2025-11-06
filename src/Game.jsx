@@ -3,7 +3,7 @@ import fetchImageData from "./fetchImageData";
 import Card from "./Card";
 import './styles/Game.css'
 
-function Game({cardData, gameEnd}) {
+function Game({cardData, gameEnd, backSrc}) {
     const SIZE = 1381; //max id is 1380
     const NUM_OF_CARDS = 5;
 
@@ -59,7 +59,7 @@ function Game({cardData, gameEnd}) {
                 <p>Loading...</p>
                 :
                 gameCards.map(c =>
-                    <Card key={c.name} name={c.name} src={c.src} flipped={flipped} handleClick={ () => clickAction(c.name) }/>
+                    <Card key={c.name} name={c.name} src={c.src} backSrc={backSrc} flipped={flipped} handleClick={ () => clickAction(c.name) }/>
                 )}
             </div>
             <p className='current-score'>{gameCounter}/{NUM_OF_CARDS}</p>
