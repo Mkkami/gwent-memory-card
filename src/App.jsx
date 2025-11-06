@@ -5,6 +5,7 @@ import Menu from './Menu.jsx'
 import Result from './Result.jsx'
 import './styles/font.css'
 import fetchCardData from './fetchCardData'
+import MusicPlayer from './MusicPlayer.jsx'
 
 const states = {
   menu: 'menu',
@@ -39,7 +40,11 @@ function App() {
   return (
     <>
     <button className='home'>Home</button>
-    <button className='music'>Music</button>
+    <button className='music'
+     onClick={() => setMusic(m => !m)}>
+      {music ? "Pause" : "Play"}
+     </button>
+    <MusicPlayer playing={music}/>
       {gameState == states.menu && 
         <Menu handleStart={() => setGameState(states.game)}/>}
       {gameState == states.game && cardData && 
