@@ -3,14 +3,13 @@ import { openDB } from 'idb';
 async function fetchImageData(artId) {
     let src;
     src = await getImageFromDb(artId)
-    console.log(src);
     if (src) {
         return URL.createObjectURL(src);
     }
     const response = await fetch(`https://corsproxy.io/?https://gwent.one/image/gwent/assets/card/art/low/${artId}.jpg`);
     const blob = await response.blob();
     await saveImageToDb(artId, blob);
-    
+
     return URL.createObjectURL(blob);
 }
 

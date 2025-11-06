@@ -1,0 +1,14 @@
+
+.menu {
+    
+}
+
+.menu button {
+    background: none;
+    border: none;
+    font-size: 3rem;
+}
+
+.menu button:hover {
+    color: goldenrod;
+}

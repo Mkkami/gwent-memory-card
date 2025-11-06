@@ -1,9 +1,9 @@
+import "./styles/Card.css"
 
-
-function Card({src, name}) {
+function Card({src, name, handleClick}) {
     
     return (
-        <div>
+        <div className="card" onClick={handleClick}>
             <img src={src} />
             <p>{name}</p>
         </div>
