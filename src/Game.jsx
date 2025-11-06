@@ -12,8 +12,6 @@ function Game({cardData, gameEnd}) {
     const [selectedCards, setSelectedCards] = useState([]);
     const [flipped, setFlipped] = useState(false);
 
-    console.log(gameCards);
-
     useEffect(() => {
         async function loadGameCards() {
             

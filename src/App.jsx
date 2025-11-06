@@ -39,7 +39,7 @@ function App() {
   return (
     <>
     <header>
-      <button className='home'>Home</button>
+      <button className='home' onClick={handleBackToMenu}>Home</button>
       <MusicPlayer />
       </header>
     
