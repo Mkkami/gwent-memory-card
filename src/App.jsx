@@ -23,6 +23,7 @@ function App() {
     async function loadCardData() {
       const data = await fetchCardData();
       setCardData(data);
+
     }
     loadCardData();
   },[])

@@ -16,7 +16,7 @@ function Game({cardData, gameEnd}) {
         async function loadGameCards() {
             
             let randomIds = getRandomUnique(NUM_OF_CARDS, SIZE);
-            randomIds = [0, 1, 2, 3, 4]; // testing
+            // randomIds = [0, 1, 2, 3, 4]; // testing
 
             const cards = await Promise.all(
                 randomIds.map(async id => {
@@ -55,7 +55,10 @@ function Game({cardData, gameEnd}) {
     return (
         <div className="game">
             <div className="card-container">
-                {gameCards.map(c =>
+                {gameCards.length === 0 ?
+                <p>Loading...</p>
+                :
+                gameCards.map(c =>
                     <Card key={c.name} name={c.name} src={c.src} flipped={flipped} handleClick={ () => clickAction(c.name) }/>
                 )}
             </div>

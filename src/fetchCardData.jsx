@@ -12,7 +12,6 @@ async function fetchCardData() {
     } else {
         cardData = JSON.parse(data);
     }
-    console.log(cardData);
     return cardData;
 }
 
