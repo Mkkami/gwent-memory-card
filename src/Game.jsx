@@ -31,7 +31,6 @@ function Game({cardData, gameEnd}) {
             setGameCards(cards);
         }
         loadGameCards();
-        setFlipped(true);
     }, [])
 
     const clickAction = (key) => {
@@ -46,12 +45,12 @@ function Game({cardData, gameEnd}) {
             gameEnd('win');
             return;
         }
-        setFlipped(false);
-        setTimeout(() => {
-            setGameCards(shuffleArray(gameCards));
-            setGameCounter(gameCounter + 1);
-            setFlipped(true);
-        }, 1000);
+        
+        setFlipped(true);
+        
+        setTimeout(() => setGameCards(shuffleArray(gameCards)), 600);
+        setGameCounter(gameCounter + 1);
+        setTimeout(() => setFlipped(false), 1200);
         
     }
     
